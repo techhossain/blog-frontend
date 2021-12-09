@@ -1,9 +1,11 @@
 import initAuthentication from '../firebase/Firebase.init';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from 'react';
 
 initAuthentication();
 
 const useFirebase = () => {
+    const [user, setUser] = useState({});
 
     const auth = getAuth();
 
@@ -26,8 +28,10 @@ const useFirebase = () => {
 
     const emailPasswordLogin = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+            .then((result) => {
+                const user = result.user;
+
+                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -35,8 +39,8 @@ const useFirebase = () => {
             });
     }
 
-
     return {
+        user,
         emailPasswordRegister,
         emailPasswordLogin
     }

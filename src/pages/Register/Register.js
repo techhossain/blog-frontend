@@ -1,19 +1,20 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
 
-    const { emailPasswordRegister } = useFirebase();
+    const { emailPasswordRegister, user } = useAuth();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const onSubmit = data => console.log(data);
 
     const onSubmit = (data) => {
         let { email, password } = data;
         emailPasswordRegister(email, password);
+        navigate("/");
     };
 
     return (

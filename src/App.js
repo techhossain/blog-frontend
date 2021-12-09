@@ -10,25 +10,49 @@ import Web from './pages/Service/Web';
 import Seo from './pages/Service/Seo';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import AuthProvider from './contexs/AuthProvider';
+import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
-    <div className="maher">
+    <div className="">
       <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="service/*" element={<Service />}>
-          <Route path="web" element={<Web />} />
-          <Route path="seo" element={<Seo />} />
-        </Route>
-        <Route path="blog" element={<Blog />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-      </Routes>
-    </div>
+      <div className="container">
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="home" element={<Home />} />
+            {/* <Route path="about" element={<About />} /> */}
+
+            <Route
+              path="/about"
+              element={
+                <PrivateRoute>
+                  <About />
+                </PrivateRoute>
+              }
+            >
+
+            </Route>
+
+
+
+            <Route path="service/*" element={<Service />}>
+              <Route path="web" element={<Web />} />
+              <Route path="seo" element={<Seo />} />
+            </Route>
+
+
+
+
+            <Route path="blog" element={<Blog />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Routes>
+        </AuthProvider>
+      </div>
+    </div >
   );
 }
 
