@@ -8,10 +8,12 @@ import Contact from './pages/Contact/Contact';
 import Service from './pages/Service/Service';
 import Web from './pages/Service/Web';
 import Seo from './pages/Service/Seo';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div className="maher">
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,6 +25,8 @@ function App() {
         </Route>
         <Route path="blog" element={<Blog />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </div>
   );

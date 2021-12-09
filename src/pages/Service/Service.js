@@ -4,26 +4,34 @@ import { Link } from 'react-router-dom';
 
 const Service = () => {
   return (
-    <div className="row">
+    <div className="container">
+      <div className="row">
 
-      <h2>Service</h2>
-      <Outlet />
-      <div className="col-md-3">
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <Link to="/service/seo" class="nav-link">
-              SEO
-            </Link>
-          </li>
-          <li>
-            <Link to="/service/web" class="nav-link">
-              WEB
-            </Link>
-          </li>
-        </ul>
+        <h2>Our Services</h2>
+        <div className="col-md-2 bg-dark h-100">
+          <ul className="nav nav-pills flex-column mb-auto">
+            <li className="nav-item">
+              <Link to="/service/seo" className="nav-link">
+                SEO
+              </Link>
+            </li>
+            <li>
+              <Link to="/service/web" className="nav-link">
+                WEB
+              </Link>
+            </li>
+            <li>
+              <Link to="/service/web" className="nav-link">
+                APP
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="col-md-10">
+          <Outlet />
+        </div>
+
       </div>
-      <div className="col-md-8"></div>
-
     </div>
   );
 };

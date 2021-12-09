@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
@@ -24,14 +24,9 @@ const Menu = () => {
               <NavLink to="about" className="nav-link" >About</NavLink>
               <NavLink to="blog" className="nav-link" >Blog</NavLink>
               <NavLink to="service" className="nav-link" >Service</NavLink>
-
-              <NavDropdown title="Services" id="collasible-nav-dropdown">
-                <NavLink className="dropdown-item" to="service/seo">SEO</NavLink>
-                <NavLink className="dropdown-item" to="service/web">WEB</NavLink>
-              </NavDropdown>
-
-
-              <NavLink to="/contact" className="nav-link" >Contact</NavLink>
+              <NavLink to="contact" className="nav-link" >Contact</NavLink>
+              <NavLink to="login" className="nav-link" >Login</NavLink>
+              <NavLink to="register" className="nav-link" >Register</NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
