@@ -1,5 +1,5 @@
 import initAuthentication from '../firebase/Firebase.init';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { useState } from 'react';
 
 initAuthentication();
@@ -9,40 +9,43 @@ const useFirebase = () => {
 
     const auth = getAuth();
 
-
     // Registration with the email & Password
-    const emailPasswordRegister = (email, password) => {
-
+    const emailPasswordRegister = (email, password, navigate) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
-
-                console.log(user);
+                const { email } = user;
+                console.log(email);
+                navigate('/')
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                const { code, message } = error;
+                console.log(code, message);
             });
     }
+
+
     // Login with the email & Password
-
     const emailPasswordLogin = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                const user = result.user;
+        return signInWithEmailAndPassword(auth, email, password);
+    }
 
-                console.log(user);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+
+    const logout = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        })
+            .finally(() => console.log('hi'));
     }
 
     return {
         user,
+        setUser,
         emailPasswordRegister,
-        emailPasswordLogin
+        emailPasswordLogin,
+        logout
     }
 
 }

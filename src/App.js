@@ -16,9 +16,9 @@ import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 function App() {
   return (
     <div className="">
-      <Menu />
-      <div className="container">
-        <AuthProvider>
+      <AuthProvider>
+        <Menu />
+        <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />
@@ -32,10 +32,7 @@ function App() {
                 </PrivateRoute>
               }
             >
-
             </Route>
-
-
 
             <Route path="service/*" element={<Service />}>
               <Route path="web" element={<Web />} />
@@ -50,8 +47,9 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Routes>
-        </AuthProvider>
-      </div>
+
+        </div>
+      </AuthProvider>
     </div >
   );
 }

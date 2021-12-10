@@ -5,18 +5,29 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
-    const { emailPasswordLogin, user } = useAuth();
+    const { emailPasswordLogin, user, setUser } = useAuth();
+
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const redirect_uri = navigate?.state?.from || '/';
-    // const { formLogin, setUser, googleSignIn, successMsg } = useAuth();
+    const location = useLocation();
+    const redirect_uri = location?.state?.from || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
+        
         let { email, password } = data;
-        emailPasswordLogin(email, password);
-        // navigate(location);
+
+        emailPasswordLogin(email, password)
+            .then((result) => {
+                const user = result.user;
+                setUser(user);
+                // console.log(user.email, redirect_uri.pathname);
+                // navigate(`${redirect_uri}`);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
     };
 
 

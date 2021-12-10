@@ -13,8 +13,8 @@ const Register = () => {
 
     const onSubmit = (data) => {
         let { email, password } = data;
-        emailPasswordRegister(email, password);
-        navigate("/");
+        emailPasswordRegister(email, password, navigate);
+        // navigate("/");
     };
 
     return (
